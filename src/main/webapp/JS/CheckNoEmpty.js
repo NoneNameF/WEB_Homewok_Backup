@@ -1,7 +1,11 @@
 function CheckNoEmpty(){
-    let flag1=CheckNotNull("UserName1");
-    let flag2=CheckNotNull("Age");
-    return flag1 && flag2
+    alert("test");
+    // let flag1=CheckNotNull("UserName");
+    // let flag2=CheckNotNull("State");
+    // let flag3=CheckNotNull("layer");
+    // let flag4=CheckNotNull("room");
+    // return flag1 && flag2 && flag3 && flag4
+    return false;
 }
 function CheckNotNull(ID) {
     let Regular=/^\s*$/;
@@ -14,8 +18,14 @@ function CheckNotNull(ID) {
             case "UserName1":
                 ObjError.innerHTML="用户名不能为空";
                 break;
-            case "Age":
-                ObjError.innerHTML="年龄不能为空";
+            case "State":
+                ObjError.innerHTML="单元号不能为空";
+                break;
+            case "layer":
+                ObjError.innerHTML="楼层不能为空";
+                break;
+            case "room":
+                ObjError.innerHTML="房间号不能为空";
                 break;
         }
         return false; //表单有问题

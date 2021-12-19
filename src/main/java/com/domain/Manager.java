@@ -1,4 +1,4 @@
-package com.information;
+package com.domain;
 
 public class Manager {
     private Integer ID;

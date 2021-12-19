@@ -1,6 +1,7 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.information.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.domain.User" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -45,33 +46,29 @@
                 <tr style="background-color: #10923866">
                     <td style="text-align: center">ID</td>
                     <td style="text-align: center">用户名</td>
-                    <td style="text-align: center">性别</td>
-                    <td style="text-align: center">年龄</td>
+                    <td style="text-align: center">单元</td>
+                    <td style="text-align: center">楼层</td>
+                    <td style="text-align: center">房号</td>
                     <td style="text-align: center">余额</td>
                     <td style="text-align: center">操作</td>
                 </tr>
-                <%
-                    List<User> userList = (List<User>) request.getAttribute("users");
-                    for (User user : userList) {
-                %>
-                <tr>
-                    <td style="text-align: center"><%=user.getID()%></td>
-                    <td style="text-align: center"><%=user.getName()%></td>
-                    <td style="text-align: center"><%=user.getSex()%></td>
-                    <td style="text-align: center"><%=user.getAge()%></td>
-                    <td style="text-align: center"><%=user.getMoney()%></td>
-                    <div class="row">
-                        <td>
-                            <a class="btn col-sm-offset-0 col-sm-3" style="background-color: #A6E2FF" href="${pageContext.request.contextPath}<%="/BeforeChangeInformationServlet?ID="+user.getID()%>">修改信息</a>
-                            <a class="btn col-sm-offset-2 col-sm-2" style="background-color: #A6E2FF" onclick="changeMoney(<%=user.getID()%>,<%=user.getMoney()%>)">充值</a>
-                            <a class="btn col-sm-offset-2 col-sm-2" style="background-color: #A6E2FF" onclick="del(<%=user.getID()%>)" >删除</a>
-                        </td>
-                    </div>
-                </tr>
-                <%
-                    }
-                %>
-
+                <c:forEach items="${users}" var="user">
+                    <tr>
+                        <td style="text-align: center">${user.id}</td>
+                        <td style="text-align: center">${user.name}</td>
+                        <td style="text-align: center">${user.state}</td>
+                        <td style="text-align: center">${user.layer}</td>
+                        <td style="text-align: center">${user.room}</td>
+                        <td style="text-align: center">${user.money}</td>
+                        <div class="row">
+                            <td>
+                                <a class="btn col-sm-offset-0 col-sm-3" style="background-color: #A6E2FF" href="${pageContext.request.contextPath}/BeforeChangeInformationServlet?ID=${user.id}">修改信息</a>
+                                <a class="btn col-sm-offset-2 col-sm-2" style="background-color: #A6E2FF" onclick="changeMoney(${user.id},${user.money})">缴费</a>
+                                <a class="btn col-sm-offset-2 col-sm-2" style="background-color: #A6E2FF" onclick="del(${user.id})" >删除</a>
+                            </td>
+                        </div>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
     </div>

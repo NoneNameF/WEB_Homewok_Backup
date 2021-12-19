@@ -1,7 +1,8 @@
-package com.Servlet;
+package com.web.servlet;
 
-import com.information.Manager;
-import com.logic.ManagerService;
+import com.dao.ManagerDao;
+import com.dao.impl.ManagerDaoImpl;
+import com.domain.Manager;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,22 +21,14 @@ public class Login extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         String ManagerName = request.getParameter("Name");
         String ManagerPassword = request.getParameter("Password");
+        HttpSession session=request.getSession();
         Manager LoginManager = new Manager();
         LoginManager.setName(ManagerName);
         LoginManager.setPassword(ManagerPassword);
-//        Manager LoginManager = new Manager();
-//        Map<String, String[]> map = request.getParameterMap();
-//        try {
-//BeanUtils.populate(LoginManager,map);
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-//       System.out.println(LoginManager);
-        ManagerService managerService = new ManagerService();
-        Manager manager = managerService.Login(LoginManager);
+        ManagerDao managerFun = new ManagerDaoImpl();
+        Manager manager = managerFun.Login(LoginManager);
         if (manager != null) {
+            session.setAttribute("Manager",manager);
             response.sendRedirect("FindUserListServlet");
         } else {
             request.getRequestDispatcher("/FailServlet").forward(request,response);

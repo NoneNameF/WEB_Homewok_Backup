@@ -1,11 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=5" name="viewport">
-    <title>会员管理</title>
+    <title>物业费缴纳系统</title>
     <link crossorigin="anonymous" href="CSS/bootstrap.min.css" rel="stylesheet"/>
     <script crossorigin="anonymous" src="${pageContext.request.contextPath}/JS/jquery-3.6.0.min.js"></script>
     <script crossorigin="anonymous" src="${pageContext.request.contextPath}/JS/bootstrap.min.js"></script>

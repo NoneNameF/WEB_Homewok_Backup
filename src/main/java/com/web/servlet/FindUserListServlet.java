@@ -1,7 +1,8 @@
-package com.Servlet;
+package com.web.servlet;
 
-import com.information.User;
-import com.logic.UserService;
+import com.domain.User;
+import com.service.UserService;
+import com.service.impl.UserServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,7 +20,7 @@ public class FindUserListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-          UserService userService=new UserService();
+        UserService userService =new UserServiceImpl();
         List<User> users = userService.findAll();
         request.setAttribute("users",users);
         request.getRequestDispatcher("/JSP/list.jsp").forward(request,response);

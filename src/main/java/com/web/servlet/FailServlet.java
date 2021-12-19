@@ -1,4 +1,4 @@
-package com.Servlet;
+package com.web.servlet;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -14,7 +14,7 @@ doPost(request,response);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-response.setContentType("text/html;charset=utf-8");
-response.getWriter().write("登录失败，用户名或密码错误");
+    response.setContentType("text/html;charset=utf-8");
+    response.getWriter().write("出错了");
     }
 }

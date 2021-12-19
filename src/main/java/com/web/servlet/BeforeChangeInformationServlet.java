@@ -1,7 +1,8 @@
-package com.Servlet;
+package com.web.servlet;
 
-import com.information.User;
-import com.logic.UserService;
+import com.domain.User;
+import com.service.UserService;
+import com.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DelUserListServlet", value = "/DelUserListServlet")
-public class delUserServlet extends HttpServlet {
+@WebServlet(name = "BeforeChangeInformationServlet", value = "/BeforeChangeInformationServlet")
+public class BeforeChangeInformationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -21,8 +22,12 @@ public class delUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         String ID = request.getParameter("ID");
-        UserService userService=new UserService();
-        if(userService.deleteUser(Integer.parseInt(ID))) System.out.println("success");
-        response.sendRedirect("FindUserListServlet");
+        System.out.println(ID);
+        UserService userService=new UserServiceImpl();
+
+       User user = userService.findUser(Integer.parseInt(ID));
+        System.out.println(user);
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("/JSP/changeInformation.jsp").forward(request, response);
     }
 }

@@ -14,7 +14,44 @@
     <meta content="width=device-width, initial-scale=5" name="viewport">
     <title>添加新用户</title>
     <link crossorigin="anonymous" href="../CSS/bootstrap.min.css" rel="stylesheet"/>
-    <script src="../JS/CheckNoEmpty.js"></script>
+    <script>
+        function CheckNoEmpty(){
+            let flag1=CheckNotNull("UserName");
+            let flag2=CheckNotNull("State");
+            let flag3=CheckNotNull("layer");
+            let flag4=CheckNotNull("room");
+            return flag1 && flag2 && flag3 && flag4
+        }
+        function CheckNotNull(ID) {
+            let Regular=/^\s*$/;
+            let Obj=document.getElementById(ID);
+            let ObjForm=document.getElementById(ID+"Form");
+            let ObjError=document.getElementById(ID+"Error");
+            if(Regular.test(Obj.value)){//如果返回true说明正则匹配成功 也就是名字全是空
+                ObjForm.className+=" has-error";
+                switch (ID) {
+                    case "UserName":
+                        ObjError.innerHTML="用户名不能为空";
+                        break;
+                    case "State":
+                        ObjError.innerHTML="单元号不能为空";
+                        break;
+                    case "layer":
+                        ObjError.innerHTML="楼层不能为空";
+                        break;
+                    case "room":
+                        ObjError.innerHTML="房间号不能为空";
+                        break;
+                }
+                return false; //表单有问题
+            }
+            else {
+                ObjForm.className="form-group col-sm-12";
+                ObjError.innerHTML="";
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -27,27 +64,35 @@
                 <div class="col-md-11 col-xs-12" style="text-align: center;font-size: 20px; color: #d58512">添加新用户</div>
             </div>
             <form class="form-horizontal row" action="${pageContext.request.contextPath}/AddUserListServlet" onsubmit="return CheckNoEmpty()">
-                <div id="UserName1Form" class="form-group col-sm-12 ">
-                    <label for="UserName1" class="col-sm-2  control-label">用户名</label>
+                <div id="UserNameForm" class="form-group col-sm-12 ">
+                    <label for="UserName" class="col-sm-2  control-label">用户名</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" id="UserName1" name="UserName1" placeholder="请输入用户名">
+                        <input type="text" class="form-control" id="UserName" name="UserName" placeholder="请输入用户名">
                     </div>
-                    <label for="UserName1" id="UserName1Error" class="col-sm-3 "></label>
+                    <label for="UserName" id="UserNameError" class="col-sm-3 "></label>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">性别</label>
-                    <div class="col-sm-8">
-                        <input type="radio" style="margin-top: 10px" name="Sex" value="Man" checked="checked">男
-                        <input type="radio" style=" margin-top: 10px" name="Sex" value="Women">女
-                    </div>
-                </div>
-                <div id="AgeForm" class="form-group col-sm-12 ">
-                    <label for="Age" class="col-sm-2  control-label">年龄</label>
+                <div id="StateForm" class="form-group col-sm-12 ">
+                    <label for="State" class="col-sm-2  control-label">单元号</label>
                     <div class="col-sm-7">
-                        <input type="number" class="form-control" id="Age" name="Age" placeholder="请输入年龄">
+                        <input type="text" class="form-control" id="State" name="State" placeholder="请输入单元号">
                     </div>
-                    <label for="Age" id="AgeError" class="col-sm-3 "></label>
+                    <label for="State" id="StateError" class="col-sm-3 "></label>
                 </div>
+                <div id="layerForm" class="form-group col-sm-12 ">
+                    <label for="layer" class="col-sm-2  control-label">楼层</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="layer" name="layer" placeholder="请输入楼层">
+                    </div>
+                    <label for="layer" id="layerError" class="col-sm-3 "></label>
+                </div>
+                <div id="roomForm" class="form-group col-sm-12 ">
+                    <label for="room" class="col-sm-2  control-label">房间号</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="room" name="room" placeholder="请输入房间号">
+                    </div>
+                    <label for="room" id="roomError" class="col-sm-3 "></label>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-3">
                         <button type="submit" class="btn btn-default btn-lg"> 添 加</button>

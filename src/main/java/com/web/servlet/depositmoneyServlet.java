@@ -1,7 +1,8 @@
-package com.Servlet;
+package com.web.servlet;
 
-import com.information.User;
-import com.logic.UserService;
+import com.domain.User;
+import com.service.UserService;
+import com.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +21,13 @@ public class depositmoneyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
-        String ID=request.getParameter("ID");
-        String Money=request.getParameter("Money");
-        User user=new User();
-        user.setID(Integer.parseInt(ID));
-        user.setMoney(Double.parseDouble(String.format("%.2f", Double.parseDouble(Money))));
-        System.out.println(user);
-        UserService userService=new UserService();
-        if(userService.depositMoney(user)) System.out.println("success");
-        response.sendRedirect("FindUserListServlet");
+        UserService userService=new UserServiceImpl();
+        boolean STA = userService.depositMoney(
+                Integer.parseInt(request.getParameter("ID")),
+                Double.parseDouble(request.getParameter("Money"))
+        );
+        System.out.println("test");
+        if(STA) response.sendRedirect("FindUserListServlet");
+//        response.sendRedirect("FailServlet");
     }
 }
