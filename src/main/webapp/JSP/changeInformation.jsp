@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=5" name="viewport">
-    <title>修改用户信息</title>
+    <title>修改业主信息</title>
     <link crossorigin="anonymous" href="${pageContext.request.contextPath}/CSS/bootstrap.min.css" rel="stylesheet"/>
     <script>
         function CheckNoEmpty(){
@@ -56,6 +56,7 @@
 </head>
 <body>
 <div class="container">
+    <%@ include file="/JSP/nav.jsp" %>
     <!--登录表单-->
     <div class="row">
         <!--表单框-->

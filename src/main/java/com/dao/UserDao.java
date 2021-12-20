@@ -12,6 +12,8 @@ public interface UserDao {
 
     public User findUser(int ID);
 
+    public List<User> findUser(String Name);
+
     public boolean deleteUser(int ID);
 
 }

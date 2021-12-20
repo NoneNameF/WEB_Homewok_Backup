@@ -21,7 +21,9 @@ public class UserServiceImpl implements UserService {
     public User findUser(int ID) {
         return userDao.findUser(ID);
     }
-
+    public List<User> findUser(String Name) {
+        return userDao.findUser(Name);
+    }
     public boolean deleteUser(int ID) {
         return userDao.deleteUser(ID);
     }

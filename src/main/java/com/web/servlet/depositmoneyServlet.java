@@ -24,10 +24,11 @@ public class depositmoneyServlet extends HttpServlet {
         UserService userService=new UserServiceImpl();
         boolean STA = userService.depositMoney(
                 Integer.parseInt(request.getParameter("ID")),
-                Double.parseDouble(request.getParameter("Money"))
+                Double.parseDouble(String.format(request.getParameter("Money"),"%.2f"))
+
         );
         System.out.println("test");
         if(STA) response.sendRedirect("FindUserListServlet");
-//        response.sendRedirect("FailServlet");
+        else response.sendRedirect("FailServlet");
     }
 }

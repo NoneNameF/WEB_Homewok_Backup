@@ -34,7 +34,6 @@
             else {
                 ObjForm.className="form-group col-sm-12";
                 ObjError.innerHTML="";
-
                 return true;
             }
         }

@@ -26,6 +26,10 @@ public class UserDaoImpl implements UserDao {
         List<User> list = jdbcTemplate.query(s, new BeanPropertyRowMapper<User>(User.class),ID);
         return list.get(0);
     }
+    public List<User> findUser(String Name){
+        s="select * from testdb.user where name=?";
+        return jdbcTemplate.query(s, new BeanPropertyRowMapper<User>(User.class),Name);
+    }
     public boolean deleteUser(int ID){
         s="delete from testdb.user where ID=?";
         jdbcTemplate.update(s,ID);

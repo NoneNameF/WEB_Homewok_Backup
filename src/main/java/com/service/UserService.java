@@ -12,6 +12,8 @@ public interface UserService {
     public boolean addUser(User user);
     //查找某一个用户
     public User findUser(int ID);
+    //查找某一个用户
+    public List<User> findUser(String Name);
     //删除某一个用户
     public boolean deleteUser(int ID);
     //更改某个用户信息
